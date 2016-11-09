@@ -1,5 +1,9 @@
 'use strict';
 function isAllTrue(source, filterFn) {
+  if (!(source instanceof Array)) {
+    throw new Error("This isn`t array");
+  }
+  
   if (source.length === 0) {
     throw new Error("Array is empty");
   }
