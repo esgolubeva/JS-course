@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         delButton.addEventListener('click', function() {
             var cookieName = cookieItem[0];
             var date = new Date(0);
-            if (confirm("Удалить cookie с именем " + cookieName + " ?")) {
+            if (confirm("Удалить cookie с именем " + cookieName + "?")) {
                 document.cookie = item + "; " + "path=/; expires=" + date.toUTCString();
                 tbody.removeChild(row);
             }
