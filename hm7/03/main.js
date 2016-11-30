@@ -6,11 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var savedDivs = document.cookie.slice(document.cookie.indexOf("divs=") + 5, document.cookie.lastIndexOf("|"));
 
     if (savedDivs.length) {
-        loadDiv();
+        loadDivs();
     }
 
-    function loadDiv() {
+    function loadDivs() {
         var divsArray = savedDivs.split("|");
+        
         divsArray.forEach(function(divsItem) {
             var div = document.createElement('div');
             var divProps = divsItem.split("+");
