@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
             var row = document.createElement('tr');
             var delButton = document.createElement('button');
 
+            delButton.setAttribute('class', 'del-button');
+            delButton.setAttribute('data-cookie-name', cookieItem[0]);
             delButton.innerHTML = 'Удалить';
             tbody.appendChild(row);
 
@@ -23,22 +25,23 @@ document.addEventListener('DOMContentLoaded', function() {
             var cell = document.createElement('td');
             row.appendChild(cell);
             cell.appendChild(delButton);
-
-            var cookieName = cookieItem[0];
-
-            delButton.addEventListener('click', function() {
-                var date = new Date(0);
-                if (confirm("Удалить cookie с именем " + cookieName + "?")) {
-                    document.cookie = item + "; " + "path=/; expires=" + date.toUTCString();
-                    tbody.removeChild(row);
-                }
-            });
         });
     }
 
-    renderList();
+    function _onRemoveButtonClick(e) {
+        if (e.target.classList.contains('del-button')) {
+            var button = e.target;
+            var cookieName = button.getAttribute('data-cookie-name');
+            var cookieRow = button.parentNode.parentNode;
+            var date = new Date(0);
+            if (confirm("Удалить cookie с именем " + cookieName + "?")) {
+                document.cookie = cookieName + "=; " + "path=/; expires=" + date.toUTCString();
+                cookieRow.parentNode.removeChild(cookieRow);
+            }
+        }
+    };
 
-    addButton.addEventListener('click', function(e) {
+    function _onAddButtonClick(e) {
         e.preventDefault();
 
         if (nameC.value && valueC.value && timeC.value) {
@@ -51,6 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         form.reset();
-    });
+    };
+
+    renderList();
+
+    tbody.addEventListener('click', _onRemoveButtonClick);
+    addButton.addEventListener('click', _onAddButtonClick);
 
 });
