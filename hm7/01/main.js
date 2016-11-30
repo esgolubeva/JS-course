@@ -41,5 +41,4 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     tbody.addEventListener('click', _onRemoveButtonClick);
-
 });
