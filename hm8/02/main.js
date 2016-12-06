@@ -54,44 +54,64 @@ function getAge(bdate, now) {
     return age;
 }
 
-promise
-    .then(function() {
-        return new Promise(function(resolve, reject) {
-            VK.api('users.get', { 'name_case': 'gen' }, function(response) {
-                if (response.error) {
-                    reject(new Error(response.error.error_msg));
-                } else {
-                    var userData = response.response[0];
+function formatBdate(bdate) {
+	if (bdate === undefined) {
+        return null;
+    }
 
-                    document.getElementById('headerInfo').textContent = `Друзья ${userData.first_name} ${userData.last_name}`;
-                    resolve();
-                }
+	var formattedBdate = [];
+    var tokens = bdate.split('.');
+    tokens.forEach(function(token) {
+        if (token.length === 1) {
+            token = '0' + token ;
+        }
+        formattedBdate.push(token); 
+    })
+    return formattedBdate.join('.');
+}
+
+
+    promise
+        .then(function() {
+            return new Promise(function(resolve, reject) {
+                VK.api('users.get', { 'name_case': 'gen' }, function(response) {
+                    if (response.error) {
+                        reject(new Error(response.error.error_msg));
+                    } else {
+                        var userData = response.response[0];
+
+                        document.getElementById('headerInfo').textContent = `Друзья ${userData.first_name} ${userData.last_name}`;
+                        resolve();
+                    }
+                });
             });
-        });
-    }).then(function() {
-        return new Promise(function(resolve, reject) {
-            VK.api('friends.get', { v: '5.8', 'fields': 'bdate, photo_50' }, function(response) {
-                if (response.error) {
-                    reject(new Error(response.error.error_msg));
-                } else {
-                    var friendsList = response.response.items;
-                    var now = new Date();
-                    var msNow = now.getTime();
+        }).then(function() {
+            return new Promise(function(resolve, reject) {
+                VK.api('friends.get', { v: '5.8', 'fields': 'bdate, photo_50' }, function(response) {
+                    if (response.error) {
+                        reject(new Error(response.error.error_msg));
+                    } else {
+                        var friendsList = response.response.items;
+                        var now = new Date();
+                        var msNow = now.getTime();
 
-                    friendsList.sort(function(first, second) {
-                        return (msNow - getMilliseconds(second.bdate, now)) - (msNow - getMilliseconds(first.bdate, now));
-                    }).forEach(function(friend) {
-                        friend.age = getAge(friend.bdate, now)
-                    })
-                }
-                var source = document.getElementById('friends-template').innerHTML;
-                var templateFn = Handlebars.compile(source);
-                var results = document.getElementById('results');
+                        friendsList.sort(function(first, second) {
+                            return (msNow - getMilliseconds(second.bdate, now)) - (msNow - getMilliseconds(first.bdate, now));
+                        }).forEach(function(friend) {
+                            friend.age = getAge(friend.bdate, now);
+                            friend.bdate = formatBdate(friend.bdate);
+                        })
+                    }
 
-                results.innerHTML = templateFn({ friends: friendsList });
-                resolve();
+
+                    var source = document.getElementById('friends-template').innerHTML;
+                    var templateFn = Handlebars.compile(source);
+                    var results = document.getElementById('results');
+
+                    results.innerHTML = templateFn({ friends: friendsList });
+                    resolve();
+                })
             })
-        })
-    }).catch(function(e) {
-        alert(`Ошибка: ${e.message}`);
-    });
+        }).catch(function(e) {
+            alert(`Ошибка: ${e.message}`);
+        });
