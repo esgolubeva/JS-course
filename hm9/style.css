@@ -1,0 +1,288 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:300,500);
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.42;
+  color: #4f4f4f;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: normal;
+  background-color: #999999;
+}
+
+.wrapper {
+  position: relative;
+  height: 100%;
+  min-width: 640px;
+}
+
+.container {
+  width: 620px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  font-weight: normal;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.main-content {
+  height: 490px;
+  width: 620px;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.header {
+  background-color: #ff8663;
+  height: 45px;
+  border-radius: 6px 6px 0 0;
+  padding: 0 15px;
+  font-size: 0;
+}
+
+.footer {
+  background-color: #f0f0f0;
+  height: 45px;
+  border-radius: 0 0 6px 6px;
+  text-align: right;
+  padding: 8px 7px;
+}
+
+.main-block {
+  height: 400px;
+}
+
+.header-left {
+  display: inline-block;
+  width: 50%;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 45px;
+}
+
+.header-right {
+  display: inline-block;
+  width: 50%;
+}
+
+.close-button {
+  display: block;
+  float: right;
+  width: 14px;
+  height: 14px;
+  transition: .3s;
+  background: url(img/cross.png) no-repeat 50% 50%;
+}
+
+.close-button:hover {
+  -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.save-button {
+  display: inline-block;
+  border-radius: 6px;
+  background: #ff8663;
+  color: white;
+  font-size: 12px;
+  line-height: 30px;
+  transition: .2s;
+  font-weight: 300;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #ff9577;
+}
+
+.save-button:active {
+  background-color: #ffae97;
+}
+
+.search {
+  font-size: 0;
+  background-color: #f0f0f0;
+  height: 45px;
+  padding: 0 15px;
+}
+
+.search-left,
+.search-rigth {
+  display: inline-block;
+  width: 50%;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 45px;
+  color: #c4c4c4;
+}
+
+.search-rigth {
+  text-align: right;
+}
+
+.search-input {
+  border-radius: 7px;
+  border-width: 0;
+  width: 285px;
+  height: 26px;
+  padding: 0 8px;
+}
+
+.friends {
+  font-size: 0;
+  height: 356px;
+}
+
+.friends-left,
+.friends-right {
+  display: inline-block;
+  width: 50%;
+  height: 355px;
+  padding: 0 15px;
+}
+
+.friends-title {
+  height: 32px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 32px;
+  color: #4f4f4f;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.friends-left {
+  border-right: 1px solid #f0f0f0;
+}
+
+.friends-container {
+  height: 323px;
+  overflow-y: scroll;
+}
+
+.friends-item {
+  height: 58px;
+  padding: 6px 0;
+}
+
+.friends-item:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.friends-item__left {
+  width: 233px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.friends-item__right {
+  width: 29px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 7px;
+}
+
+.frieds-item__photo,
+.frieds-item__name {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.frieds-item__photo {
+  max-height: 45px;
+  max-width: 45px;
+  margin: 0 6px;
+}
+
+.frieds-item__photo__pic {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+
+.frieds-item__name {
+  font-size: 12px;
+  color: #4f4f4f;
+  font-weight: 500;
+}
+
+.add__button,
+.remove__button {
+  display: block;
+  width: 16px;
+  height: 16px;
+  transition: .3s;
+}
+
+.add__button {
+  background: url(img/plus.png) no-repeat;
+}
+
+.add__button:hover {
+  background: url(img/plus-h.png) no-repeat;
+}
+
+.remove__button {
+  background: url(img/x.png) no-repeat;
+}
+
+.remove__button:hover {
+  background: url(img/x-h.png) no-repeat;
+}
+
