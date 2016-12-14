@@ -16,6 +16,7 @@ var Controller = {
     },
     groupsRoute: function() {
         return Model.getGroups().then(function(groups) {
+            groups.shift();
             results.innerHTML = View.render('groups', {list: groups});
         });
     }
