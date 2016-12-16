@@ -1,15 +1,4 @@
-function groupComments(comments) {
-    var commentsDict = {};
-    comments.items.forEach(function(comment) {
-        var photoId = comment.pid;
-        if (photoId in commentsDict) {
-            commentsDict[photoId].push(comment);
-        } else {
-            commentsDict[photoId] = [comment];
-        }
-    });
-    return commentsDict;
-}
+function 
 
 var Controller = {
     musicRoute: function() {
@@ -32,6 +21,18 @@ var Controller = {
             groups.shift();
             results.innerHTML = View.render('groups', { list: groups });
         });
+    },
+    groupComments: function(comments) {
+        var commentsDict = {};
+        comments.items.forEach(function(comment) {
+            var photoId = comment.pid;
+            if (photoId in commentsDict) {
+                commentsDict[photoId].push(comment);
+            } else {
+                commentsDict[photoId] = [comment];
+            }
+        });
+        return commentsDict;
     },
     photosRoute: function() {
         return Model.getPhotos().then(function(photos) {
