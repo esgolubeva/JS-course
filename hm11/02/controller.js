@@ -35,7 +35,7 @@ var Controller = {
     photosRoute: function() {
         return Model.getPhotos().then(function(photos) {
             Model.getAllComments().then(function(comments) {
-                return groupComments(comments);
+                return Controller.groupComments(comments);
             }).then(function(commentsDict) {
                 photos.items.forEach(function(photo) {
                     photo.comments = commentsDict[photo.id] ? commentsDict[photo.id].length : 0;
