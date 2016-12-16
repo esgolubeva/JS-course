@@ -1,5 +1,3 @@
-function 
-
 var Controller = {
     musicRoute: function() {
         return Model.getMusic().then(function(music) {
