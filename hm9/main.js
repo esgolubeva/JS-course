@@ -26,6 +26,10 @@ function sort(list) {
         return (a.name > b.name) ? 1 : ((a.name < b.name) ? -1 : 0);
     });
 
+	list.forEach(function(friend, index) {
+		friend.index = index;
+	})
+	
     return list;
 }
 
@@ -37,6 +41,7 @@ promise
             }
 
             var friendsList = response.response.items;
+            
             sort(friendsList);
 
             var source = document.getElementById('friends-template').innerHTML;
@@ -81,10 +86,12 @@ promise
                 resultsSelect.innerHTML = createFriendsList(selectedFriendsList, templateFnSelect);
             }
 
+
             function _onClick(e) {
                 if (e.target.classList.contains('add__button')) {
                     e.target.preventDefault;
                     var friendIndex = e.target.parentElement.parentElement.getAttribute('data-friend-index');
+
                     moveItem(friendIndex, friendsList, selectedFriendsList);
 
                     refreshLists();
@@ -126,7 +133,7 @@ promise
 
             function _drop(e) {
                 e.preventDefault();
-                var friendIndex = e.dataTransfer.getData("text/plain");
+                var friendIndex = e.dataTransfer.getData('text/plain');
                 if (e.target.closest('#friends-right')) {
                     moveItem(friendIndex, friendsList, selectedFriendsList);
                 } else if (e.target.closest('#friends-left')) {
@@ -144,7 +151,7 @@ promise
                 if (e.target.classList.contains('friends-item')) {
                     var listItem = e.target;
                     listItem.style.opacity = '0.5';
-                    e.dataTransfer.setData("text/plain", listItem.getAttribute('data-friend-index'));
+                    e.dataTransfer.setData('text/plain', listItem.getAttribute('data-friend-index'));
 
                     if (listItem.closest('#friends-list')) {
                         document.getElementById('friends-right').addEventListener('dragover', _dragOver);
@@ -166,6 +173,7 @@ promise
             mainBlock.addEventListener('click', _onClick);
             mainBlock.addEventListener('dragstart', _dragStart);
             refreshLists();
+
         });
     }).catch(function(e) {
         alert(`Ошибка: ${e.message}`);

@@ -33,17 +33,17 @@
                         </div>
                     </div>
                     <div class="friends">
-                        <div class="friends-left" id='friends-left'>
+                        <div class="friends-left" id="friends-left">
                             <div class="friends-title">Ваши друзья</div>
                             <div class="friends-container">
-                                <ul id="friends-list" class='friends-list'>
+                                <ul id="friends-list" class="friends-list">
                                 </ul>
                             </div>
                         </div>
                         <div class="friends-right" id="friends-right">
                             <div class="friends-title">Друзья в списке</div>
                             <div class="friends-container">
-                                <ul id="selected-friends-list" class='friends-list'>
+                                <ul id="selected-friends-list" class="friends-list">
                                 </ul>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
     <script id="friends-template" type="text/x-handlebars-template">
         {{#each friends}}
-        <li class="friends-item" data-friend-index="{{@index}}" draggable='true'>
+        <li class="friends-item" data-friend-index="{{index}}" draggable="true">
             <div class="friends-item__left">
                 <div class="frieds-item__photo">
                     <img src="{{photo_50}}" alt="photo" class="frieds-item__photo__pic">
@@ -76,7 +76,7 @@
     </script>
     <script id="selected-friends-template" type="text/x-handlebars-template">
         {{#each friends}}
-        <li class="friends-item" data-friend-index="{{@index}}" draggable='true'>
+        <li class="friends-item" data-friend-index="{{index}}" draggable="true">
             <div class="friends-item__left">
                 <div class="frieds-item__photo">
                     <img src="{{photo_50}}" alt="photo" class="frieds-item__photo__pic">
