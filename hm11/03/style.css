@@ -1,0 +1,51 @@
+.friend {
+    float: left;
+    margin: 15px;
+}
+
+.groups {
+    float: left;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.group-name {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.photo {
+    width: 200px;
+    display: inline-block;
+}
+
+.comment-list {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.comment__photo,
+.comment__info {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.photo-item {
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+}
+
+.photo-item:last-child {
+    border-bottom: none;
+}
+
+.comment__name {
+    font-weight: bold;
+    color: #191970;
+}
+
+.comment__date {
+    font-style: italic;
+    color: #A9A9A9;
+}
