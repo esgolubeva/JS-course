@@ -5,32 +5,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script src="http://vk.com/js/api/openapi.js" type="text/javascript"></script>
-    <style>
-    .friend {
-        float: left;
-        margin: 15px;
-    }
-    
-    .groups {
-        float: left;
-        width: 100%;
-        text-align: left;
-        margin-bottom: 10px;
-    }
-    
-    .group-name {
-        display: inline-block;
-        margin-left: 30px;
-    }
-    
-    .photo {
-        width: 200px;
-        height: 200px;
-        display: inline-block;
-    }
-    </style>
 </head>
 
 <body>
@@ -100,15 +77,47 @@
         </div>
     </script>
     <script type="text/x-handlebars-template" id="photosTemplate">
-        <div id="photosList">
+        <div id="album-list">
             {{#each list}}
-            <div class="photo text-center">
-                <img src="{{photo_130}}">
-                <div class="photo-info">
-                    <div>Лайков: {{likes.count}}</div>
-                    <div>Репостов: {{reposts.count}}</div>
-                    <div>Комментариев: {{comments}}</div>
+            <div class="album-item" data-album-id="{{id}}">
+                <div class="album__header">
+                    <div class="album__title">
+                        {{title}}
+                    </div>
+                    <div class="album__sort">
+                        Сортировать по:
+                        <a name="date" class="sort sortDate"> дате добавления</a>
+                        <a name="comments" class="sort sortCommentCount">количеству комментариев</a>
+                        <a name="reposts" class="sort sortRepostCount">количеству репостов</a>
+                        <a name="likes" class="sort sortLikeCount">количеству лайков</a>
+                    </div>
                 </div>
+                {{#each photos}}
+                <div class="photo-item">
+                    <div class="photo text-center">
+                        <img src="{{photo_130}}" class="img-thumbnail">
+                        <div class="photo-info">
+                            <div>Лайков: {{likes.count}}</div>
+                            <div>Репостов: {{reposts.count}}</div>
+                            <div>Комментариев: {{comments.length}} </div>
+                        </div>
+                    </div>
+                    <div class="comment-list">
+                        {{#each comments}}
+                        <div class="commment-item">
+                            <div class="comment__photo">
+                                <img src="{{photo_50}}">
+                            </div>
+                            <div class="comment__info">
+                                <div class="comment__name">{{first_name}} {{last_name}}</div>
+                                <div>{{text}} </div>
+                                <div class='comment__date'>{{formatDate date}}</div>
+                            </div>
+                        </div>
+                        {{else}} К этому фото нет комментариев. {{/each}}
+                    </div>
+                </div>
+                {{/each}}
             </div>
             {{/each}}
         </div>

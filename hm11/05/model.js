@@ -38,6 +38,19 @@ var Model = {
         return this.callApi('newsfeed.get', { filters: 'post', count: 20 });
     },
     getGroups: function() {
-        return this.callApi('groups.get', { extended: 1, fields: 'photo_50'});
+        return this.callApi('groups.get', { extended: 1, fields: 'photo_50' });
+    },
+    getPhotos: function() {
+        return this.callApi('photos.getAll', { extended: 1, v: '5.60', count: 200 });
+    },
+    getAllComments: function() {
+        return this.callApi('photos.getAllComments', { v: '5.60', count: 100 });
+    },
+    getUsers: function(id) {
+        return this.callApi('users.get', { user_ids: id, fields: 'photo_50' });
+    },
+    getAlbums: function(idAlbums) {
+        return this.callApi('photos.getAlbums', { v: '5.60', album_ids: idAlbums });
     }
+
 };
